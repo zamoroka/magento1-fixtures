@@ -50,6 +50,16 @@ abstract class Mage_Shell_Fixtures_Abstract
     }
 
     /**
+     * @return int[]
+     */
+    public function getAllActiveCategoryIds()
+    {
+        return Mage::getResourceModel('catalog/category_collection')
+                   ->addAttributeToFilter('is_active', 1)
+                   ->getColumnValues('entity_id');
+    }
+
+    /**
      * @param int $min
      * @param int $max
      * @param int $decimals
@@ -64,7 +74,28 @@ abstract class Mage_Shell_Fixtures_Abstract
         return number_format((float)$rand, $decimals, '.', '');
     }
 
+    /**
+     * @param array $array
+     * @param int   $amount
+     * @return array
+     */
+    public function randArray($array, $amount = 1)
+    {
 
+        $keys = array_rand($array, $amount);
+
+        $results = array();
+
+        foreach ($keys as $key) {
+            $results[] = $array[$key];
+        }
+
+        return $results;
+    }
+
+    /**
+     * @return string
+     */
     public function getFixturesMediaDir()
     {
         $dir = Mage::getBaseDir('media') . DS . 'catalog' . DS . 'fixtures';
@@ -74,5 +105,21 @@ abstract class Mage_Shell_Fixtures_Abstract
         }
 
         return $dir;
+    }
+
+    /**
+     * @return array
+     * @throws \Exception
+     */
+    public function getAllFixtureImages()
+    {
+        $files = array();
+        $dir = $this->getFixturesMediaDir();
+
+        foreach (glob($dir . '/*.jpg') as $image) {
+            $files[] = basename($image);
+        }
+
+        return $files;
     }
 }

@@ -15,8 +15,8 @@
         <images-per-product>3</images-per-product>
     </product-images>
 
-
     <simple_products>24000</simple_products> <!-- Simple products count -->
+
     <configurable_products> <!-- Configurable product -->
         <config>
             <attributes>

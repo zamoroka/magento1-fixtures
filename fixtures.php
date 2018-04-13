@@ -3,6 +3,7 @@
 require_once 'abstract.php';
 require_once 'fixtures/Category.php';
 require_once 'fixtures/Image.php';
+require_once 'fixtures/ProductSimple.php';
 
 /**
  * Class Mage_Shell_Fixtures
@@ -16,8 +17,9 @@ class Mage_Shell_Fixtures extends Mage_Shell_Abstract
     public function run()
     {
         if ($this->getArg('generate')) {
-            $this->generateFixturesCategory();
-            $this->generateFixturesImage();
+//            $this->generateFixturesCategory();
+//            $this->generateFixturesImage();
+            $this->generateFixturesProductSimple();
         } else {
             $this->printMessage($this->usageHelp());
         }
@@ -46,6 +48,20 @@ class Mage_Shell_Fixtures extends Mage_Shell_Abstract
             $fixtures = new Mage_Shell_Fixtures_Image();
 
             $this->printMessage('generated images: ' . $fixtures->generate());
+        } catch (Exception $e) {
+            $this->printMessage($e->getMessage());
+        }
+    }
+
+    /**
+     * Generate simple products
+     */
+    public function generateFixturesProductSimple()
+    {
+        try {
+            $fixtures = new Mage_Shell_Fixtures_ProductSimple();
+
+            $this->printMessage('generated simple products: ' . $fixtures->generate());
         } catch (Exception $e) {
             $this->printMessage($e->getMessage());
         }
