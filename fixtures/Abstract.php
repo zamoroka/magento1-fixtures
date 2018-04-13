@@ -122,4 +122,55 @@ abstract class Mage_Shell_Fixtures_Abstract
 
         return $files;
     }
+
+    /**
+     * @param int $length
+     * @return bool|string
+     */
+    protected function getRandomStr($length)
+    {
+        $result = '';
+        $range = array_merge(range('A', 'Z'), range('a', 'z'));
+        $max = count($range);
+
+        for ($i = 0; $i < $length; $i++) {
+            $result .= $range[mt_rand(0, $max)];
+        }
+
+        return $result;
+    }
+
+    /**
+     * @param int $length
+     * @return bool|string
+     */
+    protected function getRandomNumber($length)
+    {
+        $result = '';
+
+        for ($i = 0; $i < $length; $i++) {
+            $result .= mt_rand(0, 9);
+        }
+
+        return $result;
+    }
+
+    /**
+     * @param int $length
+     * @return string
+     */
+    protected function getRandomName($length)
+    {
+        return ucfirst(strtolower($this->getRandomStr($length)));
+    }
+
+    /**
+     * @return string
+     */
+    protected function getRandomEmail()
+    {
+        return strtolower($this->getRandomStr(mt_rand(1, 9)))
+            . '@' . strtolower($this->getRandomStr(mt_rand(6, 9)))
+            . '.' . strtolower($this->getRandomStr(mt_rand(2, 4)));
+    }
 }

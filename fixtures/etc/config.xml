@@ -1,12 +1,6 @@
 <?xml version="1.0"?>
 
 <config>
-    <!--<admin_users>50</admin_users>  --><!-- Number of admin users to generate -->
-    <!--<websites>3</websites>  --><!-- Number of websites to generate -->
-    <!--<store_groups>3</store_groups>  --><!--Number of stores-->
-    <!--<store_views>3</store_views>  --><!-- Number of store views -->
-    <!--<assign_entities_to_all_websites>1</assign_entities_to_all_websites>  --><!-- Whether to assign all products per each website -->
-
     <categories>300</categories> <!-- Number of categories to generate -->
     <categories_nesting_level>3</categories_nesting_level> <!-- Nesting level for categories -->
 
@@ -17,37 +11,42 @@
 
     <simple_products>24000</simple_products> <!-- Simple products count -->
 
-    <configurable_products> <!-- Configurable product -->
-        <config>
-            <attributes>
-                <attribute>
-                    <options>3</options>
-                    <swatches>image</swatches>
-                </attribute>
-                <attribute>
-                    <options>8</options>
-                </attribute>
-            </attributes>
-            <sku>Configurable Product %s</sku>
-            <products>640</products>
-        </config>
-    </configurable_products>
-
     <customers>2000</customers> <!-- Number of customers to generate -->
-
-    <catalog_price_rules>20</catalog_price_rules> <!-- Number of catalog price rules -->
-    <cart_price_rules>20</cart_price_rules> <!-- Number of cart price rules -->
-    <cart_price_rules_floor>2</cart_price_rules_floor>
-
-    <product_attribute_sets>100</product_attribute_sets> <!-- Number of product attribute sets -->
-    <product_attribute_sets_attributes>50</product_attribute_sets_attributes> <!-- Number of attributes per set -->
-    <product_attribute_sets_attributes_values>2</product_attribute_sets_attributes_values> <!-- Number of values per attribute -->
 
     <order_quotes_enable>true</order_quotes_enable>
     <order_simple_product_count_from>2</order_simple_product_count_from>
     <order_simple_product_count_to>2</order_simple_product_count_to>
     <orders>50000</orders> <!-- Orders count -->
 
-    <tax_rates_file>tax_rates.csv</tax_rates_file> <!-- Tax rates file in fixtures directory-->
+    <!-- FOR FUTURE (perhaps) -->
+    <!--<admin_users>50</admin_users>  --><!-- Number of admin users to generate -->
+    <!--<websites>3</websites>  --><!-- Number of websites to generate -->
+    <!--<store_groups>3</store_groups>  --><!--Number of stores-->
+    <!--<store_views>3</store_views>  --><!-- Number of store views -->
+    <!--<assign_entities_to_all_websites>1</assign_entities_to_all_websites>  --><!-- Whether to assign all products per each website -->
 
+    <!--<configurable_products> --> <!-- Configurable product -->
+        <!--<config>-->
+            <!--<attributes>-->
+                <!--<attribute>-->
+                    <!--<options>3</options>-->
+                    <!--<swatches>image</swatches>-->
+                <!--</attribute>-->
+                <!--<attribute>-->
+                    <!--<options>8</options>-->
+                <!--</attribute>-->
+            <!--</attributes>-->
+            <!--<sku>Configurable Product %s</sku>-->
+            <!--<products>640</products>-->
+        <!--</config>-->
+    <!--</configurable_products>-->
+
+    <!--<catalog_price_rules>20</catalog_price_rules> --> <!-- Number of catalog price rules -->
+    <!--<cart_price_rules>20</cart_price_rules> --> <!-- Number of cart price rules -->
+    <!--<cart_price_rules_floor>2</cart_price_rules_floor> -->
+
+    <!--<product_attribute_sets>100</product_attribute_sets> --> <!-- Number of product attribute sets -->
+    <!--<product_attribute_sets_attributes>50</product_attribute_sets_attributes> --> <!-- Number of attributes per set -->
+    <!--<product_attribute_sets_attributes_values>2</product_attribute_sets_attributes_values> --> <!-- Number of values per attribute -->
+    <!--<tax_rates_file>tax_rates.csv</tax_rates_file> --> <!-- Tax rates file in fixtures directory-->
 </config>
