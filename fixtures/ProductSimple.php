@@ -47,44 +47,52 @@ class Mage_Shell_Fixtures_ProductSimple extends Mage_Shell_Fixtures_Abstract
      */
     public function generateProduct($productModel, $store, $activeCategories, $images, &$index)
     {
-        $product = clone $productModel;
-        $product
-            ->setWebsiteIds(array($store->getWebsiteId()))
-            ->setStoreId($store->getId())
-            ->setAttributeSetId($product->getDefaultAttributeSetId())
-            ->setTypeId('simple')
-            ->setCreatedAt(strtotime('now'))
-            ->setSku('simple-product-' . $index)
-            ->setName('Simple product ' . $index)
-            ->setWeight(1.0000)
-            ->setStatus(1)//product status (1 - enabled, 2 - disabled)
-            ->setTaxClassId(1)//tax class (0 - none, 1 - default, 2 - taxable, 4 - shipping)
-            ->setVisibility(Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH)
-            ->setPrice($this->randFloat(10, 600, 2))
-            ->setDescription('Simple product description' . $index)
-            ->setShortDescription('Simple product short description' . $index)
-            ->setStockData(
-                array(
-                    'use_config_manage_stock' => 1,
-                    'is_in_stock'             => 1,
-                    'qty'                     => 999
+        $sku = 'simple-product-' . $index;
+
+        $product = $productModel->loadByAttribute('sku', $sku);
+        if (!$product) {
+            $product = clone $productModel;
+
+            $product
+                ->setWebsiteIds(array($store->getWebsiteId()))
+                ->setStoreId($store->getId())
+                ->setAttributeSetId($product->getDefaultAttributeSetId())
+                ->setTypeId('simple')
+                ->setCreatedAt(strtotime('now'))
+                ->setSku($sku)
+                ->setName('Simple product ' . $index)
+                ->setWeight(1.0000)
+                ->setStatus(1)//product status (1 - enabled, 2 - disabled)
+                ->setTaxClassId(1)//tax class (0 - none, 1 - default, 2 - taxable, 4 - shipping)
+                ->setVisibility(Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH)
+                ->setPrice($this->randFloat(10, 600, 2))
+                ->setDescription('Simple product description' . $index)
+                ->setShortDescription('Simple product short description' . $index)
+                ->setStockData(
+                    array(
+                        'use_config_manage_stock' => 1,
+                        'is_in_stock'             => 1,
+                        'qty'                     => 999
+                    )
                 )
-            )
-            ->setCategoryIds($this->randArray($activeCategories, 5));
+                ->setCategoryIds($this->randArray($activeCategories, 5));
 
-        $imagesPerProduct = (int)$this->getImagesPerProduct();
-        if ($imagesPerProduct > 0) {
-            $product->setMediaGallery(array('images' => array(), 'values' => array()));
-            $randomImages = $this->randArray($images, $imagesPerProduct);
+            $imagesPerProduct = (int)$this->getImagesPerProduct();
+            if ($imagesPerProduct > 0) {
+                $product->setMediaGallery(array('images' => array(), 'values' => array()));
+                $randomImages = $this->randArray($images, $imagesPerProduct);
 
-            foreach ($randomImages as $randomImage) {
-                $randomImg = 'media/catalog/fixtures/' . $randomImage;
-                $product->addImageToMediaGallery($randomImg, array('image', 'thumbnail', 'small_image'), false, false);
+                foreach ($randomImages as $randomImage) {
+                    $randomImg = 'media/catalog/fixtures/' . $randomImage;
+                    $product->addImageToMediaGallery(
+                        $randomImg, array('image', 'thumbnail', 'small_image'), false, false
+                    );
+                }
             }
-        }
 
-        $product->save();
-        $index++;
+            $product->save();
+            $index++;
+        }
     }
 
     /**
