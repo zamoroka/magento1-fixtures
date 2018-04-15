@@ -13,9 +13,8 @@
 
     <customers>2000</customers> <!-- Number of customers to generate -->
 
-    <order_quotes_enable>true</order_quotes_enable>
     <order_simple_product_count_from>2</order_simple_product_count_from>
-    <order_simple_product_count_to>2</order_simple_product_count_to>
+    <order_simple_product_count_to>4</order_simple_product_count_to>
     <orders>50000</orders> <!-- Orders count -->
 
     <!-- FOR FUTURE (perhaps) -->

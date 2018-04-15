@@ -2,6 +2,9 @@
 
 require_once 'Abstract.php';
 
+/**
+ * Class Mage_Shell_Fixtures_Customer
+ */
 class Mage_Shell_Fixtures_Customer extends Mage_Shell_Fixtures_Abstract
 {
     /**
@@ -18,12 +21,12 @@ class Mage_Shell_Fixtures_Customer extends Mage_Shell_Fixtures_Abstract
         $customerModel = Mage::getModel('customer/customer');
 
         foreach ($this->getAllActiveStores() as $store) {
-            $index = 1;
-
+            $index = 0;
             while ($index <= $customersToGenerate) {
                 $this->generateCustomer($customerModel, $store, $index);
-                $generated++;
             }
+
+            $generated = $generated + $index;
         }
 
         return $generated;
@@ -71,10 +74,10 @@ class Mage_Shell_Fixtures_Customer extends Mage_Shell_Fixtures_Abstract
             ),
 
             'city'       => 'Memphis',
-            'region_id'  => '',
-            'region'     => '',
+            'region_id'  => '12',
+            'region'     => 'California',
             'postcode'   => '38106',
-            'country_id' => 'US', /* Croatia */
+            'country_id' => 'US',
             'telephone'  => $this->getRandomNumber(13),
         );
 

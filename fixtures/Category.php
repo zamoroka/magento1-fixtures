@@ -2,6 +2,9 @@
 
 require_once 'Abstract.php';
 
+/**
+ * Class Mage_Shell_Fixtures_Category
+ */
 class Mage_Shell_Fixtures_Category extends Mage_Shell_Fixtures_Abstract
 {
     /**

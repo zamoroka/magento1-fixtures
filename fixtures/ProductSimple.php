@@ -2,11 +2,13 @@
 
 require_once 'Abstract.php';
 
+/**
+ * Class Mage_Shell_Fixtures_ProductSimple
+ */
 class Mage_Shell_Fixtures_ProductSimple extends Mage_Shell_Fixtures_Abstract
 {
     /**
      * @return array|int|string
-     * @throws \Mage_Core_Model_Store_Exception
      * @throws \Varien_Exception
      * @throws \Exception
      */
@@ -23,11 +25,12 @@ class Mage_Shell_Fixtures_ProductSimple extends Mage_Shell_Fixtures_Abstract
         $productModel = Mage::getModel('catalog/product');
 
         foreach ($activeStores as $store) {
-            $index = 1;
+            $index = 0;
             while ($index <= $productsToGenerate) {
                 $this->generateProduct($productModel, $store, $activeCategories, $images, $index);
-                $generated++;
             }
+
+            $generated = $generated + $index;
         }
 
         return $generated;

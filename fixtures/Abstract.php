@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class Mage_Shell_Fixtures_Abstract
+ */
 abstract class Mage_Shell_Fixtures_Abstract
 {
     abstract public function generate();
@@ -79,15 +82,23 @@ abstract class Mage_Shell_Fixtures_Abstract
      * @param int   $amount
      * @return array
      */
-    public function randArray($array, $amount = 1)
+    public function randArray($array, $amount = null)
     {
-
-        $keys = array_rand($array, $amount);
+        if ($amount === null) {
+            // php does not return value if null. WTF?
+            $keys = array_rand($array);
+        } else {
+            $keys = array_rand($array, $amount);
+        }
 
         $results = array();
 
-        foreach ($keys as $key) {
-            $results[] = $array[$key];
+        if (is_array($keys)) {
+            foreach ($keys as $key) {
+                $results[] = $array[$key];
+            }
+        } else {
+            $results[] =  $array[$keys];
         }
 
         return $results;
