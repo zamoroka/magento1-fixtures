@@ -91,8 +91,9 @@ class Mage_Shell_Fixtures_ProductSimple extends Mage_Shell_Fixtures_Abstract
             }
 
             $product->save();
-            $index++;
         }
+
+        $index++;
     }
 
     /**
